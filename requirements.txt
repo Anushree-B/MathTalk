@@ -2,3 +2,4 @@ streamlit>=0.82.0
 numpy>=1.19.5
 pandas>=1.2.4
 speechrecognition>=3.8.1
+pyaudio>=0.2.11
