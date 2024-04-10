@@ -6,7 +6,7 @@ import re
 import streamlit as st
 
 # Load data
-df_c = pd.read_excel(r"D:\Data Science\math talk project\data.xlsx")
+df_c = pd.read_csv(r"https://raw.githubusercontent.com/Anushree-B/MathTalk/main/data.csv")
 
 # Function to print n choose k
 def print_n_choose_k(n, k):
