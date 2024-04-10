@@ -14,5 +14,16 @@ def main():
         key=None
     )
 
+def handle_recording(recording):
+    if recording:
+        st.write("Recording...")
+    else:
+        st.write("Recording stopped. Text: {}".format(get_text_from_audio()))
+
+def get_text_from_audio():
+    # Function to process the recorded audio and extract text
+    # This function should return the extracted text from the audio
+    return "Example extracted text"
+
 if __name__ == "__main__":
     main()
