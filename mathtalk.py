@@ -142,10 +142,15 @@ def from_audio_equation(audio_file):
 
 # Function to convert speech from the microphone
 def from_microphone():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        st.write("Say something...")
-        audio_text = r.listen(source)
+    audio_bytes = audio_recorder()
+    if audio_bytes:
+        st.audio(audio_bytes, format="audio/wav")
+        r = sr.Recognizer()
+        audio_file_path = "temp_audio_file.wav"
+        with open(audio_file_path, "wb") as f:
+            f.write(audio_bytes)
+        with sr.AudioFile(audio_file_path) as source:
+            audio_text = r.listen(source)
         try:
             text = r.recognize_google(audio_text)
             st.write("Recognized Text:", text)
