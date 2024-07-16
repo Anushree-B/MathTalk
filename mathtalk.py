@@ -232,6 +232,7 @@ def from_microphone():
             st.button("Go back", use_container_width=True)
         except Exception as e:
             st.write("Error:", e)
+    st.write("out")
 
 def help_manual():
     st.markdown("<h1 style='text-align: center;'>Help Manual</h1>", unsafe_allow_html=True)
