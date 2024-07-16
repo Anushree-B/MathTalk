@@ -4,4 +4,4 @@ numpy>=1.19.5
 pandas>=1.2.4
 speechrecognition>=3.8.1
 pyaudio>=0.2.14
-audio_recorder_streamlit
+audiorecorder
