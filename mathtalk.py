@@ -145,6 +145,7 @@ def from_microphone():
     audio_bytes = audio_recorder()
     if audio_bytes:
         st.audio(audio_bytes, format="audio/wav")
+        st.write("Audio")
         r = sr.Recognizer()
         st.write("Recognizer called")
         audio_file_path = "temp_audio_file.wav"
