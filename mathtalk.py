@@ -148,8 +148,91 @@ def from_microphone():
         st.write("audio")
         st.audio(audio.export().read()) 
         st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
-        audio = audio.export("audio.wav", format="wav")
-        from_audio_equation(audio)
+        st.audio(audio.export().read())  
+        r = sr.Recognizer()
+        st.write("Recognizer called")
+        audio_file_path = "temp_audio_file.wav"
+        with open(audio_file_path, "wb") as f:
+            f.write(audio)
+        with sr.AudioFile(audio_file_path) as source:
+            audio_text = r.listen(source)
+            st.write("audio text recorded")
+        try:
+            text = r.recognize_google(audio_text)
+            st.write("Recognized Text:", text)
+            st.write("Converting into mathematical equation:")
+            text_lower = text.lower().split()  # Split the recognized text into words
+
+            equation = ''
+            skip_next_words = False
+            
+            # Loop through each word in the recognized text
+            i = 0
+            while i < len(text_lower):
+                word = text_lower[i]
+                escaped_word = escape_special_characters(word)
+                if df_c['Name'].str.contains(escaped_word, case=False).any():
+                    remaining_text = ' '.join(text_lower[i:])
+                    
+                    # Check if the remaining text matches any name in the DataFrame
+                    for j in range(len(remaining_text.split()), 0, -1):
+                        str_to_check = ' '.join(remaining_text.split()[:j])
+                        if str_to_check in df_c['Name'].str.lower().values:
+                            if str_to_check == "to the power":
+                                i = i + 3
+                                if text_lower[i] == "2":
+                                    equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                elif text_lower[i] == "3":
+                                    equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                else:
+                                    equation +=  (chr(0x2070 + int(text_lower[i])))
+                                i = i + 1
+                            elif str_to_check == "raised to" :
+                                i = i + 2
+                                if text_lower[i] == "2":
+                                    equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                elif text_lower[i] == "3":
+                                    equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                else:
+                                    equation +=  (chr(0x2070 + int(text_lower[i])))
+                                i = i + 1
+                            elif str_to_check == "square" :
+                                equation +=  (chr(0x00B0 + int(2)))
+                                i = i + 1
+                            elif str_to_check == "cube":
+                                equation +=  (chr(0x00B0 + int(3)))
+                                i = i + 1
+                            elif str_to_check == "permutation":
+                                var = print_n_choose_k(equation[-2], text_lower[i+1])
+                                equation= equation.replace(equation[-2],var,1)
+                                i = i + 2
+                            elif str_to_check == "combination":
+                                var = print_combi(equation[-2], text_lower[i+1])
+                                equation= equation.replace(equation[-2],var,1)
+                                i = i + 2
+                            elif str_to_check == "integral":
+                                var = print_integral(equation[-2], text_lower[i+1])
+                                equation= equation.replace(equation[-2],var,1)
+                                i = i + 2
+                            elif str_to_check == "double integral":
+                                var = print_d_integral(equation[-2], text_lower[i+2])
+                                equation= equation.replace(equation[-2],var,1)
+                                i = i + 3
+                            else:
+                                equation += df_c.loc[df_c['Name'].str.lower() == str_to_check, 'Symbol'].values[0] + ' '
+                                i += len(str_to_check.split())
+                            skip_next_words = True
+                            break
+                if not skip_next_words:
+                    equation += word + ' '
+                    i += 1
+                else:
+                    skip_next_words = False
+
+            st.write("Equation:", equation.strip())  #Strip trailing whitespace to remove extra space at the end
+            st.button("Go back", use_container_width=True)
+        except Exception as e:
+            st.write("Error:", e)
 
 def help_manual():
     st.markdown("<h1 style='text-align: center;'>Help Manual</h1>", unsafe_allow_html=True)
