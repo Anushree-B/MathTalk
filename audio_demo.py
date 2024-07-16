@@ -2,6 +2,7 @@ import streamlit as st
 from audiorecorder import audiorecorder
 import speech_recognition as sr
 import io
+from pydub import AudioSegment
 
 st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Click to stop recording")
@@ -25,11 +26,16 @@ if len(audio) > 0:
             r = sr.Recognizer()
             st.write("Recognizer called")
             
-            # Use io.BytesIO to create an in-memory buffer
-            audio_buffer = io.BytesIO(audio_bytes)
+            # Convert audio bytes to AudioSegment
+            audio_segment = AudioSegment.from_file(io.BytesIO(audio_bytes))
             
-            # Use the audio buffer with speech recognition
-            with sr.AudioFile(audio_buffer) as source:
+            # Export AudioSegment to a WAV format bytes buffer
+            wav_buffer = io.BytesIO()
+            audio_segment.export(wav_buffer, format='wav')
+            wav_buffer.seek(0)
+            
+            # Use the wav buffer with speech recognition
+            with sr.AudioFile(wav_buffer) as source:
                 audio_text = r.record(source)
                 st.write("Audio text recorded")
 
