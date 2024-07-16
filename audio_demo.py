@@ -161,7 +161,13 @@ if len(audio) > 0:
                         skip_next_words = False
     
                 st.write("Equation:", equation.strip())  #Strip trailing whitespace to remove extra space at the end
-                st.button("Go back", use_container_width=True)
+                st.markdown("""
+                        <p style='text-align: center;'>
+                        <a href="https://mathtalk-app.streamlit.app/" target="_blank">
+                        Go back
+                        </a>
+                    </p>
+                    """, unsafe_allow_html=True)
 
         except Exception as e:
             st.write("Error during speech recognition:", e)
