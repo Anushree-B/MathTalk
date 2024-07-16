@@ -142,8 +142,10 @@ def from_audio_equation(audio_file):
 
 # Function to convert speech from the microphone
 def from_microphone():
+    st.write("in mic")
     audio_bytes = audio_recorder()
     if audio_bytes:
+        st.write("audio")
         st.audio(audio_bytes, format="audio/wav")
         st.write("Audio")
         r = sr.Recognizer()
