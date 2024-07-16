@@ -146,11 +146,13 @@ def from_microphone():
     if audio_bytes:
         st.audio(audio_bytes, format="audio/wav")
         r = sr.Recognizer()
+        st.write("Recognizer called")
         audio_file_path = "temp_audio_file.wav"
         with open(audio_file_path, "wb") as f:
             f.write(audio_bytes)
         with sr.AudioFile(audio_file_path) as source:
             audio_text = r.listen(source)
+            st.write("audio text recorded")
         try:
             text = r.recognize_google(audio_text)
             st.write("Recognized Text:", text)
