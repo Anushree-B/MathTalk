@@ -147,8 +147,7 @@ def from_microphone():
     if len(audio)>0:
         st.write("audio")
         st.audio(audio.export().read()) 
-        st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
-        st.audio(audio.export().read())  
+        st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")  
         r = sr.Recognizer()
         st.write("Recognizer called")
         audio_file_path = "temp_audio_file.wav"
