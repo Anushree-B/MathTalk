@@ -147,7 +147,8 @@ def from_microphone():
     if len(audio)>0:
         st.write("audio")
         st.audio(audio.export().read()) 
-        st.audio(audio.export().read())  
+        st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
+     '''st.audio(audio.export().read())  
         r = sr.Recognizer()
         st.write("Recognizer called")
         audio_file_path = "temp_audio_file.wav"
@@ -231,7 +232,7 @@ def from_microphone():
             st.write("Equation:", equation.strip())  #Strip trailing whitespace to remove extra space at the end
             st.button("Go back", use_container_width=True)
         except Exception as e:
-            st.write("Error:", e)
+            st.write("Error:", e)'''
 
 def help_manual():
     st.markdown("<h1 style='text-align: center;'>Help Manual</h1>", unsafe_allow_html=True)
