@@ -337,8 +337,14 @@ def main():
         st.markdown("<p style='text-align: center;'>OR</p>", unsafe_allow_html=True)
         st.write("Click here to use microphone")
         st.write("")
-        st.button("Use microphone", on_click=from_microphone, use_container_width=True)
-            #from_microphone()            # , on_click=from_microphone, use_container_width=True)
+        st.markdown("""
+            <p style='text-align: center;'>
+                <a href="https://mathtalk-audio.streamlit.app/" target="_blank">
+                    Go to the microphone page
+                </a>
+            </p>
+        """, unsafe_allow_html=True)
+        
         st.write("done")
     elif selection == 'Help':
         help_manual()
