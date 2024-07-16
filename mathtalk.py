@@ -5,7 +5,7 @@ import speech_recognition as sr
 import re
 import streamlit as st
 import streamlit as st
-from audio_recorder_streamlit import audio_recorder
+from audiorecorder import audiorecorder
 
 # Load data
 df_c = pd.read_csv(r"https://raw.githubusercontent.com/Anushree-B/MathTalk/main/data.csv")
@@ -143,16 +143,16 @@ def from_audio_equation(audio_file):
 # Function to convert speech from the microphone
 def from_microphone():
     st.write("in mic")
-    audio_bytes = audio_recorder()
-    if audio_bytes:
+    audio = audiorecorder("Click to record", "Click to stop recording")
+    if len(audio)>0:
         st.write("audio")
-        st.audio(audio_bytes, format="audio/wav")
-        st.write("Audio")
+        st.audio(audio.export().read()) 
+        st.audio(audio.export().read())  
         r = sr.Recognizer()
         st.write("Recognizer called")
         audio_file_path = "temp_audio_file.wav"
         with open(audio_file_path, "wb") as f:
-            f.write(audio_bytes)
+            f.write(audio)
         with sr.AudioFile(audio_file_path) as source:
             audio_text = r.listen(source)
             st.write("audio text recorded")
