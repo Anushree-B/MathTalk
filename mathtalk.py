@@ -148,6 +148,8 @@ def from_microphone():
         st.write("audio")
         st.audio(audio.export().read()) 
         st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
+        audio = audio.export("audio.wav", format="wav")
+        from_audio_equation(audio)
 
 def help_manual():
     st.markdown("<h1 style='text-align: center;'>Help Manual</h1>", unsafe_allow_html=True)
