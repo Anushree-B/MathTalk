@@ -7,6 +7,9 @@ import pandas as pd
 import numpy as np
 import re
 
+# Load data
+df_c = pd.read_csv(r"https://raw.githubusercontent.com/Anushree-B/MathTalk/main/data.csv")
+
 def print_n_choose_k(n, k):
     # Convert n and k to superscript and subscript characters
     superscript_digits = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
