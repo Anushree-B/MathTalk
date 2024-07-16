@@ -333,7 +333,7 @@ def main():
         st.markdown("<p style='text-align: center;'>OR</p>", unsafe_allow_html=True)
         st.write("Click here to use microphone")
         st.write("")
-        if st.button("Use microphone"):
+        if st.button("Use microphone",  use_container_width=True):
             from_microphone()            # , on_click=from_microphone, use_container_width=True)
     elif selection == 'Help':
         help_manual()
