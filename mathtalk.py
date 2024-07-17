@@ -464,8 +464,7 @@ def main():
         st.write("Click here to use microphone")
         st.write("")
         if st.button('Use Microphone', use_container_width=True):
-            from_microphone()
-            #st.session_state.page = "Microphone"
+            st.session_state.page = "Microphone"
     elif st.session_state.page == 'Microphone':
         from_mic()
     elif st.session_state.page == 'Help':
