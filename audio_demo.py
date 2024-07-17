@@ -93,7 +93,6 @@ if len(audio) > 0:
                 st.write("Recognized Text:", text)
                 st.write("Converting into mathematical equation:")
                 text_lower = text.lower().split()  # Split the recognized text into words
-                st.write(text_lower)
                 equation = ''
                 skip_next_words = False
                 
@@ -102,7 +101,6 @@ if len(audio) > 0:
                 while i < len(text_lower):
                     word = text_lower[i]
                     if word == "^" :
-                        st.write("in^")
                         i = i + 1
                         if text_lower[i] == "2":
                             equation +=  (chr(0x00B0 + int(text_lower[i])))
@@ -111,13 +109,12 @@ if len(audio) > 0:
                         else:
                              equation +=  (chr(0x2070 + int(text_lower[i])))
                         i = i + 1
+                        word = text_lower[i]
                     escaped_word = escape_special_characters(word)
                     if df_c['Name'].str.contains(escaped_word, case=False).any():
                         remaining_text = ' '.join(text_lower[i:])
-                        st.write("in if")
                         # Check if the remaining text matches any name in the DataFrame
                         for j in range(len(remaining_text.split()), 0, -1):
-                            st.write("in for")
                             str_to_check = ' '.join(remaining_text.split()[:j])
                             if str_to_check in df_c['Name'].str.lower().values:
                                 if str_to_check == "to the power":
