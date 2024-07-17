@@ -129,6 +129,7 @@ if len(audio) > 0:
                                     i = i + 1
                                 elif str_to_check == "^" :
                                     i = i + 1
+                                    st.write(i)
                                     if text_lower[i] == "2":
                                         equation +=  (chr(0x00B0 + int(text_lower[i])))
                                     elif text_lower[i] == "3":
