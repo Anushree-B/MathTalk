@@ -4,7 +4,8 @@ import numpy as np
 import speech_recognition as sr
 import re
 import streamlit as st
-import streamlit as st
+import io
+from pydub import AudioSegment
 from audiorecorder import audiorecorder
 
 # Load data
