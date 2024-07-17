@@ -61,19 +61,19 @@ if len(audio) > 0:
     st.audio(audio.export().read(), format='audio/wav')  
 
     # To get audio properties, use pydub AudioSegment properties:
-    st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
+    #st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
     
     # Export the audio to a bytes buffer
     audio_bytes = audio.export().read()
     
     # Check if the audio_bytes is not empty
     if audio_bytes:
-        st.write("Audio successfully saved in bytes buffer.")
+        #st.write("Audio successfully saved in bytes buffer.")
         
         try:
             # Initialize recognizer
             r = sr.Recognizer()
-            st.write("Recognizer called")
+            #st.write("Recognizer called")
             
             # Convert audio bytes to AudioSegment
             audio_segment = AudioSegment.from_file(io.BytesIO(audio_bytes))
@@ -86,7 +86,7 @@ if len(audio) > 0:
             # Use the wav buffer with speech recognition
             with sr.AudioFile(wav_buffer) as source:
                 audio_text = r.record(source)
-                st.write("Audio text recorded")
+                #st.write("Audio text recorded")
 
                 # Recognize speech using Google Speech Recognition
                 text = r.recognize_google(audio_text)
