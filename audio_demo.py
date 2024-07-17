@@ -127,6 +127,15 @@ if len(audio) > 0:
                                     else:
                                         equation +=  (chr(0x2070 + int(text_lower[i])))
                                     i = i + 1
+                                elif str_to_check == "^" :
+                                    i = i + 2
+                                    if text_lower[i] == "2":
+                                        equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                    elif text_lower[i] == "3":
+                                        equation +=  (chr(0x00B0 + int(text_lower[i])))
+                                    else:
+                                        equation +=  (chr(0x2070 + int(text_lower[i])))
+                                    i = i + 1
                                 elif str_to_check == "square" :
                                     equation +=  (chr(0x00B0 + int(2)))
                                     i = i + 1
