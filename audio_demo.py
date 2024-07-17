@@ -104,9 +104,10 @@ if len(audio) > 0:
                     escaped_word = escape_special_characters(word)
                     if df_c['Name'].str.contains(escaped_word, case=False).any():
                         remaining_text = ' '.join(text_lower[i:])
-                        
+                        st.write("in if")
                         # Check if the remaining text matches any name in the DataFrame
                         for j in range(len(remaining_text.split()), 0, -1):
+                            st.write("in for")
                             str_to_check = ' '.join(remaining_text.split()[:j])
                             if str_to_check in df_c['Name'].str.lower().values:
                                 if str_to_check == "to the power":
