@@ -6,3 +6,4 @@ speechrecognition>=3.8.1
 pyaudio>=0.2.14
 streamlit-audiorecorder
 pydub
+SpeechRecognition
