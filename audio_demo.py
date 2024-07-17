@@ -93,7 +93,7 @@ if len(audio) > 0:
                 st.write("Recognized Text:", text)
                 st.write("Converting into mathematical equation:")
                 text_lower = text.lower().split()  # Split the recognized text into words
-    
+                st.write(text_lower)
                 equation = ''
                 skip_next_words = False
                 
