@@ -129,6 +129,7 @@ if len(audio) > 0:
                                         equation +=  (chr(0x2070 + int(text_lower[i])))
                                     i = i + 1
                                 elif str_to_check == "^" :
+                                    st.write("in ^^^")
                                     i = i + 1
                                     st.write(i)
                                     if text_lower[i] == "2":
