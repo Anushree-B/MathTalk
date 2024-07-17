@@ -324,7 +324,7 @@ def main():
     col2.subheader("A speech to symbol approach")
 
     st.sidebar.title('Menu')
-    selection = st.sidebar.radio("Go to", ['Home', 'Help', 'About us'])
+    selection = st.sidebar.radio("Go to", ['Home','Microphone', 'Help', 'About us'])
 
     # Display content based on user selection
     if selection == 'Home':
@@ -337,6 +337,8 @@ def main():
         st.markdown("<p style='text-align: center;'>OR</p>", unsafe_allow_html=True)
         st.write("Click here to use microphone")
         st.write("")
+        if st.button('Use Microphone'):
+            st.experimental_set_query_params(page='Microphone')
         st.markdown("""
             <p style='text-align: center;'>
                 <a href="https://mathtalk-audio.streamlit.app/" target="_blank">
@@ -346,6 +348,8 @@ def main():
         """, unsafe_allow_html=True)
         
         st.write("done")
+    elif selection == 'Microphone':
+        from_microphone()
     elif selection == 'Help':
         help_manual()
     elif selection == 'About us':
