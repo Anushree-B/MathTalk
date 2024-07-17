@@ -351,8 +351,9 @@ def from_mic():
                             i += 1
                         else:
                             skip_next_words = False
-        
-                    st.write("Equation:", equation.strip())
+                        st.write("Equation:", equation.strip())
+
+
 
 def help_manual():
     st.markdown("<h1 style='text-align: center;'>Help Manual</h1>", unsafe_allow_html=True)
