@@ -352,6 +352,8 @@ def from_mic():
                         else:
                             skip_next_words = False
                         st.write("Equation:", equation.strip())
+            except Exception as e:
+                st.write("Error during speech recognition:", e)
 
 
 
