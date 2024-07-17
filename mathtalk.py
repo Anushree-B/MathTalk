@@ -465,15 +465,6 @@ def main():
         st.write("")
         if st.button('Use Microphone', use_container_width=True):
             st.session_state.page = "Microphone"
-        st.markdown("""
-            <p style='text-align: center;'>
-                <a href="https://mathtalk-audio.streamlit.app/" target="_blank">
-                    Go to the microphone page
-                </a>
-            </p>
-        """, unsafe_allow_html=True)
-        
-        st.write("done")
     elif st.session_state.page == 'Microphone':
         from_mic()
     elif st.session_state.page == 'Help':
