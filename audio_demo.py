@@ -109,7 +109,10 @@ if len(audio) > 0:
                         else:
                              equation +=  (chr(0x2070 + int(text_lower[i])))
                         i = i + 1
-                        word = text_lower[i]
+                        if i < len(text_lower):
+                            continue
+                        else:
+                            break
                     escaped_word = escape_special_characters(word)
                     if df_c['Name'].str.contains(escaped_word, case=False).any():
                         remaining_text = ' '.join(text_lower[i:])
