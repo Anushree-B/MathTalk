@@ -101,6 +101,16 @@ if len(audio) > 0:
                 i = 0
                 while i < len(text_lower):
                     word = text_lower[i]
+                    if word == "^" :
+                        st.write("in^")
+                        i = i + 1
+                        if text_lower[i] == "2":
+                            equation +=  (chr(0x00B0 + int(text_lower[i])))
+                         elif text_lower[i] == "3":
+                            equation +=  (chr(0x00B0 + int(text_lower[i])))
+                        else:
+                             equation +=  (chr(0x2070 + int(text_lower[i])))
+                        i = i + 1
                     escaped_word = escape_special_characters(word)
                     if df_c['Name'].str.contains(escaped_word, case=False).any():
                         remaining_text = ' '.join(text_lower[i:])
@@ -121,17 +131,6 @@ if len(audio) > 0:
                                     i = i + 1
                                 elif str_to_check == "raised to" :
                                     i = i + 2
-                                    if text_lower[i] == "2":
-                                        equation +=  (chr(0x00B0 + int(text_lower[i])))
-                                    elif text_lower[i] == "3":
-                                        equation +=  (chr(0x00B0 + int(text_lower[i])))
-                                    else:
-                                        equation +=  (chr(0x2070 + int(text_lower[i])))
-                                    i = i + 1
-                                elif str_to_check == "^" :
-                                    st.write("in ^^^")
-                                    i = i + 1
-                                    st.write(i)
                                     if text_lower[i] == "2":
                                         equation +=  (chr(0x00B0 + int(text_lower[i])))
                                     elif text_lower[i] == "3":
