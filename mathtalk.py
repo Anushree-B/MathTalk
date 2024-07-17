@@ -322,12 +322,14 @@ def main():
 # Write text in the second column
     col2.header("MathTalk")
     col2.subheader("A speech to symbol approach")
-
+    if 'page' not in st.session_state:
+        st.session_state.page = "Home"
     st.sidebar.title('Menu')
     selection = st.sidebar.radio("Go to", ['Home','Microphone', 'Help', 'About us'])
-
+    if selection:
+        st.session_state.page = selection
     # Display content based on user selection
-    if selection == 'Home':
+    if st.session_state.page == 'Home':
         st.write("")
         st.write("Upload audio file here.")
         uploaded_file = st.file_uploader("", type=["wav", "mp3"])
@@ -338,7 +340,7 @@ def main():
         st.write("Click here to use microphone")
         st.write("")
         if st.button('Use Microphone'):
-            st.experimental_set_query_params(page='Microphone')
+            st.session_state.page = "Microphone"
         st.markdown("""
             <p style='text-align: center;'>
                 <a href="https://mathtalk-audio.streamlit.app/" target="_blank">
@@ -348,11 +350,11 @@ def main():
         """, unsafe_allow_html=True)
         
         st.write("done")
-    elif selection == 'Microphone':
+    elif st.session_state.page == 'Microphone':
         from_microphone()
-    elif selection == 'Help':
+    elif st.session_state.page == 'Help':
         help_manual()
-    elif selection == 'About us':
+    elif st.session_state.page == 'About us':
         about_us()
         
 
