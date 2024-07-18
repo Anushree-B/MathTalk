@@ -10,5 +10,5 @@ MathTalk is a Python-based project aimed at simplifying mathematical notation th
 - Convert spoken mathematical expressions into symbolic equations.
 - Support for various mathematical operations including integrals, derivatives, exponents, permutations, and combinations.
 - Compatibility with audio files (WAV, AIFF, AIFF-C, FLAC) and microphone input.
-- Easy-to-use interface with Streamlit.
+- Easy-to-use interface with Streamlit.   
 
