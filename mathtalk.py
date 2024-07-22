@@ -465,6 +465,7 @@ def main():
         st.write("")
         if st.button('Use Microphone', use_container_width=True):
             st.session_state.page = "Microphone"
+        st.write("*Click on the microphone radio button if the button doesn't load a screen")
     elif st.session_state.page == 'Microphone':
         from_mic()
     elif st.session_state.page == 'Help':
