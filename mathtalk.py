@@ -441,7 +441,7 @@ def main():
     col1, col2 = st.columns([1.25,5])  # Adjust the ratio as needed
 
 # Display image in the first column
-    col1.image(r'https://raw.githubusercontent.com/Anushree-B/MathTalk/main/image.png', use_column_width=True)
+    col1.image(r'https://raw.githubusercontent.com/Anushree-B/MathTalk/main/image.png', use_container_width=True)
 
 # Write text in the second column
     col2.header("MathTalk")
